@@ -84,6 +84,23 @@ void searchStudent(Student s[], int studentCount){
     printf("Invalid Id \n");
 }
 
+void removeStudent(Student s[], int *studentCount){
+    int id;
+    printf("Enter student id : ");
+    scanf("%d", &id);
+    for(int i=0; i<*studentCount; i++){
+        if(id == s[i].id){
+            for(int j=i; j<*studentCount - 1; j++){
+                s[j] = s[j+1];
+            }
+            printf("\tStudent is remove \n");
+            printf("==========================================\n\n");
+            (*studentCount)--;
+            return ;
+        }
+    }
+}
+
 void main(){
     Student s[100];
     Student s1 = {101, "Shivani", 19, {100, 100, 100}, 300, 100};
@@ -112,7 +129,7 @@ void main(){
                 printf("Student is added \n\n");
             }
             break;
-            case 2 : printf("Remove Student \n");
+            case 2 : removeStudent(s, &studentCount);
             break;
             case 3 : searchStudent(s, studentCount);
             break;
